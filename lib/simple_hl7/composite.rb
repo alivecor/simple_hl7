@@ -26,21 +26,38 @@ module SimpleHL7
       raise Exception.new("Subclass Responsibility")
     end
 
+    def each
+      (1..max_index).each { |i| yield @subcomposites[i] } if max_index
+    end
+
+    def map
+      (1..max_index).map { |i| yield @subcomposites[i] } if max_index
+    end
+
     def to_hl7(separator_chars)
       sep_char = current_separator_char(separator_chars)
-      max_index = @subcomposites.keys.max
-      (1..max_index).map { |i|
-        @subcomposites[i].to_hl7(separator_chars) if @subcomposites[i]
-      }.join(sep_char)
+      map { |subc| subc.to_hl7(separator_chars) if subc }.join(sep_char)
     end
 
     def to_s
       @subcomposites[1].to_s
     end
 
+    def to_a
+      a = []
+      each {|subc| a << subc}
+      a
+    end
+
     def method_missing(meth, *args, &block)
       if meth.to_s =~ /^e[0-9]+$/
       end
+    end
+
+    private
+
+    def max_index
+      @subcomposites.keys.max
     end
 
   end

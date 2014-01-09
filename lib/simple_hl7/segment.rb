@@ -15,6 +15,10 @@ module SimpleHL7
       separator_chars.field
     end
 
+    def to_a
+      super.insert(0, name)
+    end
+
     def to_hl7(separator_chars)
       sep_char = current_separator_char(separator_chars)
       [@name, super].join(sep_char)
