@@ -23,5 +23,14 @@ module SimpleHL7
         msg.segment('OBX', 2)[1].to_s.should == "2"
       end
     end
+
+    describe "#parse" do
+      it "properly parses a hl7 string" do
+        msg = Message.parse("MSH|^~\\&||||accountid\nPID|||||User^Test")
+        msg.msh[6].to_s.should == "accountid"
+        msg.pid[5].to_s.should == "User"
+        msg.pid[5][1][2].to_s.should == "Test"
+      end
+    end
   end
 end

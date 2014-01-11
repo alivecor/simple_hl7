@@ -1,10 +1,10 @@
 module SimpleHL7
   class Component < Composite
-    def current_separator_char(separator_chars)
+    def self.current_separator_char(separator_chars)
       separator_chars.subcomponent
     end
 
-    def subcomposite_class
+    def self.subcomposite_class
       Subcomponent
     end
   end

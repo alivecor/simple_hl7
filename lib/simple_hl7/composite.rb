@@ -2,45 +2,46 @@ module SimpleHL7
   class Composite
     def initialize(value = nil)
       @subcomposites = {}
-      @subcomposites[1] = subcomposite_class.new(value) unless value.nil?
+      cls = self.class
+      unless value.nil?
+        @subcomposites[cls.start_index] = cls.subcomposite_class.new(value)
+      end
     end
 
     def []=(index, value)
-      @subcomposites[index] = subcomposite_class.new(value)
+      @subcomposites[index] = self.class.subcomposite_class.new(value)
     end
 
     def [](index)
       subcomposite = @subcomposites[index]
       if subcomposite.nil?
-        subcomposite = subcomposite_class.new
-        @subcomposites[index] = subcomposite
+        subcomposite = self.class.subcomposite_class.new
+        set_subcomposite(index, subcomposite)
       end
       subcomposite
     end
 
-    def current_separator_char(separator_chars)
-      raise Exception.new("Subclass Responsibility")
-    end
-
-    def subcomposite_class
-      raise Exception.new("Subclass Responsibility")
+    def set_subcomposite(index, value)
+      @subcomposites[index] = value
     end
 
     def each
-      (1..max_index).each { |i| yield @subcomposites[i] } if max_index
+      start = self.class.start_index
+      (start..max_index).each { |i| yield @subcomposites[i] } if max_index
     end
 
     def map
-      (1..max_index).map { |i| yield @subcomposites[i] } if max_index
+      start = self.class.start_index
+      (start..max_index).map { |i| yield @subcomposites[i] } if max_index
     end
 
     def to_hl7(separator_chars)
-      sep_char = current_separator_char(separator_chars)
+      sep_char = self.class.current_separator_char(separator_chars)
       map { |subc| subc.to_hl7(separator_chars) if subc }.join(sep_char)
     end
 
     def to_s
-      @subcomposites[1].to_s
+      @subcomposites[self.class.start_index].to_s
     end
 
     def to_a
@@ -49,9 +50,35 @@ module SimpleHL7
       a
     end
 
-    def method_missing(meth, *args, &block)
-      if meth.to_s =~ /^e[0-9]+$/
+    def self.start_index
+      1
+    end
+
+    def self.current_separator_char(separator_chars)
+      raise Exception.new("Subclass Responsibility")
+    end
+
+    def self.subcomposite_class
+      raise Exception.new("Subclass Responsibility")
+    end
+
+    def self.parse(str, separator_chars)
+      composite = new
+      parse_subcomposite_hash(str, separator_chars).each do |index, subc|
+        composite.set_subcomposite(start_index + index, subc)
       end
+      composite
+    end
+
+    def self.parse_subcomposite_hash(str, separator_chars)
+      subc_strs = str.split(current_separator_char(separator_chars))
+      subc_h = {}
+      subc_strs.each_with_index do |subc_str, index|
+        unless subc_str.empty?
+          subc_h[index] = subcomposite_class.parse(subc_str, separator_chars)
+        end
+      end
+      subc_h
     end
 
     private

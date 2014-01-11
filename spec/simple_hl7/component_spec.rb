@@ -18,5 +18,13 @@ module SimpleHL7
         field[1].to_s.should == "foo"
       end
     end
+
+    describe "#parse" do
+      it "parse hl7 correctly" do
+        component = Component.parse("foo&bar", SeparatorCharacters.defaults)
+        component[1].to_s.should == "foo"
+        component[2].to_s.should == "bar"
+      end
+    end
   end
 end

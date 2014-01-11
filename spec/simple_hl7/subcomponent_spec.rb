@@ -19,5 +19,14 @@ module SimpleHL7
         subc.to_hl7(default_chars).should == "\\E\\\\T\\\\S\\\\R\\\\F\\"
       end
     end
+
+    describe "#parse" do
+      it "should unescape the special characters" do
+        str = "\\E\\\\T\\\\S\\\\R\\\\F\\"
+        default_chars = SeparatorCharacters.defaults
+        parsed = Subcomponent.parse(str, default_chars)
+        parsed.to_s.should == '\\&^~|'
+      end
+    end
   end
 end

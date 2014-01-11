@@ -13,5 +13,15 @@ module SimpleHL7
     def to_s
       value
     end
+
+    def self.parse(str, separator_chars)
+      value = str
+      value.gsub!("\\E\\", separator_chars.escape)
+      value.gsub!("\\F\\", separator_chars.field)
+      value.gsub!("\\R\\", separator_chars.repetition)
+      value.gsub!("\\S\\", separator_chars.component)
+      value.gsub!("\\T\\", separator_chars.subcomponent)
+      Subcomponent.new(value)
+    end
   end
 end
