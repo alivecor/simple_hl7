@@ -7,5 +7,17 @@ module SimpleHL7
     def self.subcomposite_class
       ComponentContainer
     end
+
+    def []=(index, value)
+      get_subcomposite(1)[index] = value
+    end
+
+    def [](index)
+      get_subcomposite(1)[index]
+    end
+
+    def r(index)
+      get_subcomposite(index)
+    end
   end
 end

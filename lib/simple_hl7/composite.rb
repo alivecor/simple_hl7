@@ -13,6 +13,10 @@ module SimpleHL7
     end
 
     def [](index)
+      get_subcomposite(index)
+    end
+
+    def get_subcomposite(index)
       subcomposite = @subcomposites[index]
       if subcomposite.nil?
         subcomposite = self.class.subcomposite_class.new
