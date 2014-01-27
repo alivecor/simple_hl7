@@ -18,7 +18,7 @@ module SimpleHL7
 
     def to_hl7
       separator_chars = get_named_segment('MSH').separator_chars
-      @segments.map {|s| s.to_hl7(separator_chars)}.join("\n")
+      @segments.map {|s| s.to_hl7(separator_chars)}.join("\r")
     end
 
     def to_a
@@ -62,7 +62,7 @@ module SimpleHL7
 
     def self.parse(str)
       msg = new(false)
-      segment_strs = str.split("\n")
+      segment_strs = str.split("\r")
       msh = MSHSegment.parse(segment_strs[0])
       msg.append_segment(msh)
       segment_strs[1, segment_strs.length].each do |seg_str|

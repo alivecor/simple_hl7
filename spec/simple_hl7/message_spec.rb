@@ -8,7 +8,7 @@ module SimpleHL7
         msg.msh[6] = "accountid"
         msg.pid[5] = "User"
         msg.pid[5][2] = "Test"
-        msg.to_hl7.should == "MSH|^~\\&||||accountid\nPID|||||User^Test"
+        msg.to_hl7.should == "MSH|^~\\&||||accountid\rPID|||||User^Test"
       end
     end
 
@@ -26,7 +26,7 @@ module SimpleHL7
 
     describe "#parse" do
       it "properly parses a hl7 string" do
-        msg = Message.parse("MSH|^~\\&||||accountid\nPID|||||User^Test~Repeat")
+        msg = Message.parse("MSH|^~\\&||||accountid\rPID|||||User^Test~Repeat")
         msg.msh[6].to_s.should == "accountid"
         msg.pid[5].to_s.should == "User"
         msg.pid[5][2].to_s.should == "Test"
