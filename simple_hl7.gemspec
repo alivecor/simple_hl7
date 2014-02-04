@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["rome@alivecor.com"]
   gem.description   = %q{Parse and generate hl7 messages for interfacing with health care systems}
   gem.summary       = %q{Parse and generate hl7 messages}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/alivecor/simple_hl7"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
