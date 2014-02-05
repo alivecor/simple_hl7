@@ -10,6 +10,11 @@ module SimpleHL7
         field.r(2)[1] = "bar"
         field.to_hl7(SeparatorCharacters.defaults).should == 'foo^baz~bar'
       end
+
+      it "generates an empty message for a nil value" do
+        field = Field.new(nil)
+        field.to_hl7(SeparatorCharacters.defaults).should == ''
+      end
     end
   end
 end

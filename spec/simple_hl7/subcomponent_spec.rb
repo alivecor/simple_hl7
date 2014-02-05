@@ -2,6 +2,17 @@ require "simple_hl7"
 
 module SimpleHL7
   describe Subcomponent do
+    describe "#initialize" do
+      it "changes a nil value to an empty string" do
+        subc = Subcomponent.new(nil)
+        subc.value.should == ''
+      end
+
+      it "initializes with a value" do
+        subc = Subcomponent.new('test')
+        subc.value.should == 'test'
+      end
+    end
     describe "#to_hl7" do
       it "returns the value" do
         subf = Subcomponent.new('test')
@@ -17,6 +28,13 @@ module SimpleHL7
         subc = Subcomponent.new('\\&^~|')
         default_chars = SeparatorCharacters.defaults
         subc.to_hl7(default_chars).should == "\\E\\\\T\\\\S\\\\R\\\\F\\"
+      end
+
+      context "when initialized with an empty string" do
+        it "returns an empty string" do
+          subc = Subcomponent.new(nil)
+          subc.to_hl7(SeparatorCharacters.defaults).should == ''
+        end
       end
     end
 

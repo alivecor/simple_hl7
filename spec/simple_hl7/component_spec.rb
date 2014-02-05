@@ -9,6 +9,11 @@ module SimpleHL7
         field[2] = "bar"
         field.to_hl7(SeparatorCharacters.defaults).should == "foo&bar"
       end
+
+      it "returns an empty string when initialized with a nil" do
+        field = Component.new(nil)
+        field.to_hl7(SeparatorCharacters.defaults).should == ''
+      end
     end
 
     describe "[]" do

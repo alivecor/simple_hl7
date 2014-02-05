@@ -1,5 +1,11 @@
 module SimpleHL7
-  class Subcomponent < Struct.new(:value)
+  class Subcomponent
+    attr_accessor :value
+
+    def initialize(value)
+      @value = value.nil? ? '' : value
+    end
+
     def to_hl7(separator_chars)
       hl7 = value
       hl7.gsub!(separator_chars.escape, "\\E\\")

@@ -11,6 +11,15 @@ module SimpleHL7
         msg.to_hl7.should == "MSH|^~\\&||||accountid\rPID|||||User^Test"
       end
 
+      it "generates an hl7 message with a nil field" do
+        msg = Message.new
+        msg.msh[6] = "accountid"
+        msg.pid[5] = "User"
+        msg.pid[5][2] = "Test"
+        msg.msh[5] = nil
+        msg.to_hl7.should == "MSH|^~\\&||||accountid\rPID|||||User^Test"
+      end
+
       it "generates a message with a non-default segment separator" do
         msg = Message.new(segment_separator: "\r\n")
         msg.msh[6] = "accountid"

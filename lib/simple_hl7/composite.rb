@@ -10,9 +10,7 @@ module SimpleHL7
     def initialize(value = nil)
       @subcomposites = {}
       cls = self.class
-      unless value.nil?
-        @subcomposites[cls.start_index] = cls.subcomposite_class.new(value)
-      end
+      @subcomposites[cls.start_index] = cls.subcomposite_class.new(value)
     end
 
     # Set the value of the specified subcomposite.
