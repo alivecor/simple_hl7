@@ -162,6 +162,18 @@ Outputs:
 MSH|^~\&|
 NTE|||Testing \T\ escaping notes
 ```
+### Segment Separator
+
+Some nonstandard HL7 implementations require a different segment separator
+character than "\r". To make this change pass the `segment_separator` option to
+the `Message` constructor.
+
+```ruby
+msg = SimpleHL7::Message.new(segment_separator: "\r\n")
+msg.pid[3] = "123456"
+msg.to_hl7
+=> "MSH|^~\\&|\r\nPID|||123456"
+```
 
 ### Parsing
 
