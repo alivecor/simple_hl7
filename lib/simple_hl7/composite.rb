@@ -109,8 +109,8 @@ module SimpleHL7
       1
     end
 
-    # The character that is used to separate the subcomposites when generating
-    # a HL7 string.
+    # @abstract The character that is used to separate the subcomposites when
+    # generating a HL7 string.
     #
     # @param separator_chars [SeparatorChars] The separator characters in use
     #   during the HL7 string conversion.
@@ -118,7 +118,7 @@ module SimpleHL7
       raise Exception.new("Subclass Responsibility")
     end
 
-    # The class that is used for subcomposites.
+    # @abstract The class that is used for subcomposites.
     def self.subcomposite_class
       raise Exception.new("Subclass Responsibility")
     end
