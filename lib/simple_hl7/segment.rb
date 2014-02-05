@@ -12,6 +12,14 @@ module SimpleHL7
       separator_chars.field
     end
 
+    def initialize(name = nil)
+      if name
+        super(name.upcase)
+      else
+        super
+      end
+    end
+
     def name
       self[0].to_s
     end

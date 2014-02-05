@@ -10,6 +10,14 @@ module SimpleHL7
         msg.pid[5][2] = "Test"
         msg.to_hl7.should == "MSH|^~\\&||||accountid\rPID|||||User^Test"
       end
+
+      it "generates a message with a non-default segment separator" do
+        msg = Message.new(segment_separator: "\r\n")
+        msg.msh[6] = "accountid"
+        msg.pid[5] = "User"
+        msg.pid[5][2] = "Test"
+        msg.to_hl7.should == "MSH|^~\\&||||accountid\r\nPID|||||User^Test"
+      end
     end
 
     describe "#add_segment" do

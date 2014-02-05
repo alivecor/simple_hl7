@@ -3,6 +3,13 @@ require "simple_hl7"
 
 module SimpleHL7
   describe Segment do
+    describe "#initialize" do
+      it "is not case sensitive to the segment name" do
+        seg = Segment.new('pId')
+        seg.name.should == 'PID'
+      end
+    end
+
     describe "#to_hl7" do
       it "generates a message using the specified separator chars" do
         sep_chars = SeparatorCharacters.defaults
