@@ -49,6 +49,14 @@ module SimpleHL7
         msg.pid[5][2].to_s.should == "Test"
         msg.pid[5].r(2)[1].to_s.should == "Repeat"
       end
+
+      it "properly parses a hl7 string with nonstandard separators" do
+        msg = Message.parse("MSH|^~\\&||||accountid\r\nPID|||||User^Test",
+                            segment_separator: "\r\n")
+        msg.msh[6].to_s.should == "accountid"
+        msg.pid[5].to_s.should == "User"
+        msg.pid[5][2].to_s.should == "Test"
+      end
     end
   end
 end

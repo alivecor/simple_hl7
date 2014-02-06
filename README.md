@@ -191,6 +191,14 @@ msg.pid[5][1].to_s
 => "Doe"
 ```
 
+If the string to be parsed contains a nonstandard segment separator then it can
+be passed into the `parse` method as well:
+
+```ruby
+hl7_str = "MSH|^~\\&|||||||ADT^A04|12345678|D|2.5\r\nPID|||454545||Doe^John"
+msg = SimpleHL7::Message.parse(hl7_str, segment_separator: "\r\n")
+```
+
 ## Contributing
 
 1. Fork it

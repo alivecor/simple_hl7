@@ -1,8 +1,8 @@
 module SimpleHL7
   class Message
     # Constructor
-    # options [Hash] Options for the Message, keys are symbols, accepted values
-    #   are:
+    # @param options [Hash] Options for the Message, keys are symbols, accepted
+    #   values are:
     #   default_msh [boolean] True to create a default MSH segment, false
     #     to create the message with no segments. Defaults to true.
     #   segment_separator [String] The string to place between segments when
@@ -95,10 +95,16 @@ module SimpleHL7
     # Parses a HL7 string into a Message
     #
     # @param str [String] The string to parse.
+    # @param options [Hash] Options for parsing, keys are symbols, accepted
+    #   values:
+    #   segment_separator [String] The string to place between segments when
+    #     generating HL7, defaults to "\r".
     # @return [Message] The parsed HL7 Message
-    def self.parse(str)
+    def self.parse(str, options = nil)
+      default_opts = {default_msh: true, segment_separator: "\r"}
+      opts = default_opts.merge(options || {})
       msg = new(default_msh: false)
-      segment_strs = str.split("\r")
+      segment_strs = str.split(opts[:segment_separator])
       msh = MSHSegment.parse(segment_strs[0])
       msg.append_segment(msh)
       segment_strs[1, segment_strs.length].each do |seg_str|
