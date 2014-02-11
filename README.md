@@ -115,8 +115,8 @@ msg.msh[9][2] = "A04"
 ```
 
 It is important to note that under the hood the the bracket syntax actually
-adds the value to the first subcomponent of the first componenet of the first
-repition in the specified field.
+adds the value to the first subcomponent of the first component of the first
+repetition in the specified field.
 
 This means that:
 
