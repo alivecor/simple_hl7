@@ -1,0 +1,13 @@
+language: ruby
+cache:
+  bundler: true
+rvm:
+  - "2.0.0"
+script:
+  - bundle exec rspec spec/ -f documentation -c
+branches:
+  only:
+    - master
+notifications:
+  email: 
+    - ops@alivecor.com
