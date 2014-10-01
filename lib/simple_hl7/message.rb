@@ -101,6 +101,7 @@ module SimpleHL7
     #     generating HL7, defaults to "\r".
     # @return [Message] The parsed HL7 Message
     def self.parse(str, options = nil)
+      str.strip!
       default_opts = {default_msh: true, segment_separator: "\r"}
       opts = default_opts.merge(options || {})
       msg = new(default_msh: false)
