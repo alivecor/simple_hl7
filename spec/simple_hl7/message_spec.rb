@@ -29,6 +29,24 @@ module SimpleHL7
       end
     end
 
+    describe "#to_llp" do
+      it "generates an llp message" do
+        msg = Message.new
+        msg.msh[6] = "accountid"
+        msg.pid[5] = "User"
+        msg.pid[5][2] = "Test"
+        msg.to_llp.should == "\x0bMSH|^~\\&||||accountid\rPID|||||User^Test\x1c\r"
+      end
+
+      it "generates a llp message with a non-default segment separator" do
+        msg = Message.new(segment_separator: "\r\n")
+        msg.msh[6] = "accountid"
+        msg.pid[5] = "User"
+        msg.pid[5][2] = "Test"
+        msg.to_llp.should == "\x0bMSH|^~\\&||||accountid\r\nPID|||||User^Test\x1c\r"
+      end
+    end
+
     describe "#add_segment" do
       it "adds segments properly" do
         msg = Message.new
