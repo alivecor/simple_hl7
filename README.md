@@ -174,6 +174,18 @@ msg.pid[3] = "123456"
 msg.to_hl7
 => "MSH|^~\\&|\r\nPID|||123456"
 ```
+### Transmitting via TCP/IP
+
+The Lower Layer Protocol (LLP) is the most common mechanism for sending unencrypted HL7 via TCP/IP over a local area network. In order to be complaint with this protocol you can use `to_llp` method which wraps the HL7 message with the appropriate header and trailer.
+
+```ruby
+msg = SimpleHL7::Message.new
+msg.msh[12] = '2.5'
+
+socket = TCPSocket.open(ipaddr, port)
+socket.write msg.to_llp
+socket.close
+```
 
 ### Parsing
 
