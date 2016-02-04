@@ -34,6 +34,14 @@ module SimpleHL7
       @segments.map {|s| s.to_hl7(separator_chars)}.join(@segment_separator)
     end
 
+    # Generate a LLP string from this message
+    # Commonly used for transmitting HL7 messages via TCP/IP
+    #
+    # @return [String] The generated LLP string
+    def to_llp
+      "\x0b#{to_hl7}\x1c\r"
+    end
+
     # Get an array representation of the HL7 message. This can be useful
     # to help debug problems.
     #
