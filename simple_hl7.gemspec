@@ -14,6 +14,7 @@ Gem::Specification.new do |gem|
   gem.name          = "simple_hl7"
   gem.require_paths = ["lib"]
   gem.version       = SimpleHL7::VERSION
+  gem.licenses      = ['MIT']
 
   gem.add_development_dependency "pry", "~> 0.9"
   gem.add_development_dependency "rspec", "~> 2.14"
