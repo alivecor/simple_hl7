@@ -3,7 +3,7 @@ require File.expand_path('../lib/simple_hl7/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Rome Portlock"]
-  gem.email         = ["rome@alivecor.com"]
+  gem.email         = ["hportlock@gmail.com"]
   gem.description   = %q{Parse and generate hl7 messages for interfacing with health care systems}
   gem.summary       = %q{Parse and generate hl7 messages}
   gem.homepage      = "https://github.com/alivecor/simple_hl7"
