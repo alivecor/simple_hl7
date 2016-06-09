@@ -15,7 +15,7 @@ module SimpleHL7
       hl7.gsub!(separator_chars.subcomponent, "\\T\\")
       hl7
     rescue => e
-      raise ArgumentError.new("Encountered exception building message #{value.class}: #{value}")
+      raise StandardError.new("Encountered exception building message #{value.class}: #{value}")
     end
 
     def to_s
@@ -31,7 +31,7 @@ module SimpleHL7
       value.gsub!("\\T\\", separator_chars.subcomponent)
       Subcomponent.new(value)
     rescue => e
-      raise ArgumentError.new("Encountered exception parsing #{value.class}: #{value}")
+      raise StandardError.new("Encountered exception parsing #{value.class}: #{value}")
     end
   end
 end
