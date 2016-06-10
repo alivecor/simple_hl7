@@ -16,6 +16,8 @@ module SimpleHL7
         hl7.gsub!(separator_chars.subcomponent, "\\T\\")
       end
       hl7
+    rescue => e
+      raise e, "Encountered exception building message: #{e}", e.backtrace
     end
 
     def to_s
@@ -32,6 +34,8 @@ module SimpleHL7
         value.gsub!("\\T\\", separator_chars.subcomponent)
       end
       Subcomponent.new(value)
+    rescue => e
+      raise e, "Encountered exception parsing message: #{e}", e.backtrace
     end
   end
 end
