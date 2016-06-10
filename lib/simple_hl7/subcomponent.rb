@@ -8,14 +8,14 @@ module SimpleHL7
 
     def to_hl7(separator_chars)
       hl7 = value
-      hl7.gsub!(separator_chars.escape, "\\E\\")
-      hl7.gsub!(separator_chars.field, "\\F\\")
-      hl7.gsub!(separator_chars.repetition, "\\R\\")
-      hl7.gsub!(separator_chars.component, "\\S\\")
-      hl7.gsub!(separator_chars.subcomponent, "\\T\\")
+      if hl7.respond_to? :gsub!
+        hl7.gsub!(separator_chars.escape, "\\E\\")
+        hl7.gsub!(separator_chars.field, "\\F\\")
+        hl7.gsub!(separator_chars.repetition, "\\R\\")
+        hl7.gsub!(separator_chars.component, "\\S\\")
+        hl7.gsub!(separator_chars.subcomponent, "\\T\\")
+      end
       hl7
-    rescue => e
-      raise StandardError.new("Encountered exception building message #{value.class}: #{value}")
     end
 
     def to_s
@@ -24,14 +24,14 @@ module SimpleHL7
 
     def self.parse(str, separator_chars)
       value = str
-      value.gsub!("\\E\\", separator_chars.escape)
-      value.gsub!("\\F\\", separator_chars.field)
-      value.gsub!("\\R\\", separator_chars.repetition)
-      value.gsub!("\\S\\", separator_chars.component)
-      value.gsub!("\\T\\", separator_chars.subcomponent)
+      if value.respond_to? :gsub!
+        value.gsub!("\\E\\", separator_chars.escape)
+        value.gsub!("\\F\\", separator_chars.field)
+        value.gsub!("\\R\\", separator_chars.repetition)
+        value.gsub!("\\S\\", separator_chars.component)
+        value.gsub!("\\T\\", separator_chars.subcomponent)
+      end
       Subcomponent.new(value)
-    rescue => e
-      raise StandardError.new("Encountered exception parsing #{value.class}: #{value}")
     end
   end
 end
