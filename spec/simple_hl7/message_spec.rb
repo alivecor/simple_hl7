@@ -76,5 +76,15 @@ module SimpleHL7
         msg.pid[5][2].to_s.should == "Test"
       end
     end
+
+    describe "#parse_llp" do
+      it "properly parses a llp string" do
+        msg = Message.parse_llp("\x0bMSH|^~\\&||||accountid\rPID|||||User^Test~Repeat\x1c\r")
+        msg.msh[6].to_s.should == "accountid"
+        msg.pid[5].to_s.should == "User"
+        msg.pid[5][2].to_s.should == "Test"
+        msg.pid[5].r(2)[1].to_s.should == "Repeat"
+      end
+    end
   end
 end
