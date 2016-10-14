@@ -85,6 +85,12 @@ module SimpleHL7
         msg.pid[5][2].to_s.should == "Test"
         msg.pid[5].r(2)[1].to_s.should == "Repeat"
       end
+
+      it "raise an error on NON llp messages" do
+        expect {
+          Message.parse_llp("MSH|^~\\&||||accountid\rPID|||||User^Test~Repeat")
+        }.to raise_error(ArgumentError, /Invalid LLP message/)
+      end
     end
   end
 end

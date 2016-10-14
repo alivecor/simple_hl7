@@ -130,7 +130,11 @@ module SimpleHL7
     #     generating HL7, defaults to "\r".
     # @return [Message] The parsed HL7 Message
     def self.parse_llp(str, options = nil)
-      parse(str, options)
+      if llp = str.match(/\x0b(.*)\x1c\r/)
+        parse(llp.captures.first, options)
+      else
+        raise ArgumentError, "Invalid LLP message, header and trailer were expected."
+      end
     end
   end
 end
