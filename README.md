@@ -211,6 +211,17 @@ hl7_str = "MSH|^~\\&|||||||ADT^A04|12345678|D|2.5\r\nPID|||454545||Doe^John"
 msg = SimpleHL7::Message.parse(hl7_str, segment_separator: "\r\n")
 ```
 
+### Parsing LLP messages
+
+In case you are parsing HL7 messages received over TCP/IP using the LLP protocol, use the `parse_llp` method
+
+```ruby
+llp_str = "\x0bMSH|^~\\&|||||||ADT^A04|12345678|D|2.5\rPID|||454545||Doe^John\x1c\r"
+msg = SimpleHL7::Message.parse_llp(llp_str)
+```
+
+Once the message is parsed you can follow the same methods pointed above to pull out values
+
 ## Contributing
 
 1. Fork it
