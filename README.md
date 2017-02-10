@@ -176,7 +176,7 @@ msg.to_hl7
 ```
 ### Transmitting via TCP/IP
 
-The Lower Layer Protocol (LLP) is the most common mechanism for sending unencrypted HL7 via TCP/IP over a local area network. In order to be complaint with this protocol you can use `to_llp` method which wraps the HL7 message with the appropriate header and trailer.
+The Lower Layer Protocol (LLP) is the most common mechanism for sending unencrypted HL7 via TCP/IP over a local area network. In order to be compliant with this protocol you can use `to_llp` method which wraps the HL7 message with the appropriate header and trailer.
 
 ```ruby
 msg = SimpleHL7::Message.new
