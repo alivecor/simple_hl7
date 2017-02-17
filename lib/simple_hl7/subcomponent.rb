@@ -7,9 +7,8 @@ module SimpleHL7
     end
 
     def to_hl7(separator_chars)
-      hl7 = value
-      if hl7.respond_to? :gsub!
-        hl7.gsub!(separator_chars.escape, "\\E\\")
+      if value.respond_to? :gsub!
+        hl7 = value.gsub(separator_chars.escape, "\\E\\")
         hl7.gsub!(separator_chars.field, "\\F\\")
         hl7.gsub!(separator_chars.repetition, "\\R\\")
         hl7.gsub!(separator_chars.component, "\\S\\")

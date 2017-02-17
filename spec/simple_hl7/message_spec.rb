@@ -76,5 +76,21 @@ module SimpleHL7
         msg.pid[5][2].to_s.should == "Test"
       end
     end
+
+    describe "#parse_llp" do
+      it "properly parses a llp string" do
+        msg = Message.parse_llp("\x0bMSH|^~\\&||||accountid\rPID|||||User^Test~Repeat\x1c\r")
+        msg.msh[6].to_s.should == "accountid"
+        msg.pid[5].to_s.should == "User"
+        msg.pid[5][2].to_s.should == "Test"
+        msg.pid[5].r(2)[1].to_s.should == "Repeat"
+      end
+
+      it "raise an error on NON llp messages" do
+        expect {
+          Message.parse_llp("MSH|^~\\&||||accountid\rPID|||||User^Test~Repeat")
+        }.to raise_error(ArgumentError, /Invalid LLP message/)
+      end
+    end
   end
 end

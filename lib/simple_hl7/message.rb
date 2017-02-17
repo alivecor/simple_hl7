@@ -120,5 +120,21 @@ module SimpleHL7
       end
       msg
     end
+
+    # Parses a HL7 LLP (Lower Layer Protocol) string into a Message
+    #
+    # @param str [String] The llp string to parse.
+    # @param options [Hash] Options for parsing, keys are symbols, accepted
+    #   values:
+    #   segment_separator [String] The string to place between segments when
+    #     generating HL7, defaults to "\r".
+    # @return [Message] The parsed HL7 Message
+    def self.parse_llp(str, options = nil)
+      if llp = str.match(/\x0b(.*)\x1c\r/)
+        parse(llp.captures.first, options)
+      else
+        raise ArgumentError, "Invalid LLP message, header and trailer were expected."
+      end
+    end
   end
 end

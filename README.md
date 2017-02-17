@@ -176,7 +176,7 @@ msg.to_hl7
 ```
 ### Transmitting via TCP/IP
 
-The Lower Layer Protocol (LLP) is the most common mechanism for sending unencrypted HL7 via TCP/IP over a local area network. In order to be complaint with this protocol you can use `to_llp` method which wraps the HL7 message with the appropriate header and trailer.
+The Lower Layer Protocol (LLP) is the most common mechanism for sending unencrypted HL7 via TCP/IP over a local area network. In order to be compliant with this protocol you can use `to_llp` method which wraps the HL7 message with the appropriate header and trailer.
 
 ```ruby
 msg = SimpleHL7::Message.new
@@ -210,6 +210,17 @@ be passed into the `parse` method as well:
 hl7_str = "MSH|^~\\&|||||||ADT^A04|12345678|D|2.5\r\nPID|||454545||Doe^John"
 msg = SimpleHL7::Message.parse(hl7_str, segment_separator: "\r\n")
 ```
+
+### Parsing LLP messages
+
+In case you are parsing HL7 messages received over TCP/IP using the LLP protocol, use the `parse_llp` method
+
+```ruby
+llp_str = "\x0bMSH|^~\\&|||||||ADT^A04|12345678|D|2.5\rPID|||454545||Doe^John\x1c\r"
+msg = SimpleHL7::Message.parse_llp(llp_str)
+```
+
+Once the message is parsed you can follow the same methods pointed above to pull out values
 
 ## Contributing
 

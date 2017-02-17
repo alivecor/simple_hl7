@@ -30,6 +30,12 @@ module SimpleHL7
         subc.to_hl7(default_chars).should == "\\E\\\\T\\\\S\\\\R\\\\F\\"
       end
 
+      it "doesn't mutate the subcomponent" do
+        subc = Subcomponent.new('peas&carrots')
+        subc.to_hl7(SeparatorCharacters.defaults)
+        subc.value.should == 'peas&carrots'
+      end
+
       context "when initialized with an empty string" do
         it "returns an empty string" do
           subc = Subcomponent.new(nil)
