@@ -8,6 +8,11 @@ module SimpleHL7
         subc.value.should == ''
       end
 
+      it "changes a no argument to an empty string" do
+        subc = Subcomponent.new
+        subc.value.should == ''
+      end
+
       it "initializes with a value" do
         subc = Subcomponent.new('test')
         subc.value.should == 'test'
