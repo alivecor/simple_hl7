@@ -75,6 +75,11 @@ module SimpleHL7
         msg.pid[5].to_s.should == "User"
         msg.pid[5][2].to_s.should == "Test"
       end
+
+      it "should ignote invisible symbols before parse" do
+        msg = Message.parse("\nMSH|^~\\&|System|||accountid\rPID|||||User^Test")
+        msg.msh[3].to_s.should == "System"
+      end
     end
 
     describe "#parse_llp" do
