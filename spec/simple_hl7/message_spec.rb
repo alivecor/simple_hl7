@@ -75,7 +75,19 @@ module SimpleHL7
         msg.pid[5].to_s.should == "User"
         msg.pid[5][2].to_s.should == "Test"
       end
+
     end
+
+    describe "repeating segments accessed by calling method with segment name followed by '_all' e.g. al1_all for allergy segments" do
+      it "provides access to repeating segments" do
+        hl7_msg = File.read("#{File.expand_path File.dirname(__FILE__)}/sample_message_with_repeating_segments.hl7")
+        msg = Message.parse(hl7_msg, segment_separator: "\n")
+        msg.al1_all.size.should == 3
+        msg.al1_all[1][3][2].to_s.match(/Nitrostat/).should be_truthy
+        msg.al1_all[2][3][2].to_s.match(/iodine/).should be_truthy
+        msg.al1[3][2].to_s.match(/nitroglycerin/).should be_truthy
+      end
+    end  
 
     describe "#parse_llp" do
       it "properly parses a llp string" do

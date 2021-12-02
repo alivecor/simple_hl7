@@ -1,0 +1,16 @@
+MSH|^~\&|HNAM|MCH|CARINGLY|CARINGLY|20211201142018||ADT^A08|Q246327519T316598917X0|P|2.3||||||8859/1
+EVN|A08|20211201142017|||1^SYSTEM^SYSTEM^^^^^^PERSONNEL PRIMARY IDENTIFIER^Personnel^^^Personnel Primary Identifier~CERNSYSTEM^SYSTEM^SYSTEM^^^^^^External Id^Personnel^^^External Identifier
+PID|1|306845^^^MLKCH MRN^MRN|306845^^^MLKCH MRN^MRN~X0000100275^^^Community MRN^Community MRN|^0^^CONSUMER_MESSAGING^Messaging|ZZZTEST^EDUSACS^^^^^Current||19700319|Male||American Indian or Alaska Native|48 none^^New Baltimore^MI^48047^US^Home^^Macomb~cd@none.com^^^^^^E-mail||(999)988-8888^Home^Tel||English|Unknown||907735^^^MLKCH FIN^FIN NBR|||||||0
+PD1|||||||No, info not provided
+NK1|1|TESTING^AUUNT^^^^^Current|||(586)544-4444^Home^Tel||Emergency Contact
+NK1|2|TESTING^AUUNT^^^^^Current|||(586)544-4444^Home^Tel||Support Person
+PV1|1|Emergency|ED^ED16^A^MLK^^Bed(s)^MLK|Emergency|||1619954633^Brown^Eric^^MD^Physician^^^NPI^Personnel^^^National Provider Identifier~FB6005450^Brown^Eric^^MD^Physician^^^DEA^Personnel^^^DOCDEA~A72839^Brown^Eric^^MD^Physician^^^Provider State License Number^Personnel^^^LICENSENBR~EGO^Brown^Eric^^MD^Physician^^^Billing Group^Personnel^^^OTHER~6050081358012^Brown^Eric^^MD^Physician^^^SureScripts Prescriber  Index^Personnel^^^SureScripts Prescriber Index||2754578955^MLKCHTest^Physician Primary Care^^^^^^NPI^Personnel^^^National Provider Identifier~PHYSPRIMCARE01^MLKCHTest^Physician Primary Care^^^^^^PROVIDER_MESSAGING^Personnel^^^Messaging|Emergency Medicine||||Clinic Referral|||1619954633^Brown^Eric^^MD^Physician^^^NPI^Personnel^^^National Provider Identifier~FB6005450^Brown^Eric^^MD^Physician^^^DEA^Personnel^^^DOCDEA~A72839^Brown^Eric^^MD^Physician^^^Provider State License Number^Personnel^^^LICENSENBR~EGO^Brown^Eric^^MD^Physician^^^Billing Group^Personnel^^^OTHER~6050081358012^Brown^Eric^^MD^Physician^^^SureScripts Prescriber  Index^Personnel^^^SureScripts Prescriber Index|Emergency||Self Pay|||||||||||||||||||MLK||Active|||20210706065235||||||||6914424^Pierce^Troy^^^^^Other~DCHAVIRA^Chavira^Daniel^^^^^PRIMARY_CONTACT
+PV2|||^pain|||||||0|||||||||||Yes||^^589723|||||||Not Started
+DG1|1|ICD10-CM|I10|Hypertension|20211201122500|Discharge|||||||||1
+GT1|1|306845^^^MLKCH MRN^MRN~100275^^^Community MRN^Community MRN~100275^^^Community MRN^Community MRN~306845^^^MLKCH MRN^MRN|ZZZTEST^EDUSACS^^^^^Current||48 none^^New Baltimore^MI^48047^US^Home^^Macomb~cd@none.com^^^^^^E-mail|(999)988-8888^Home^Tel||19700319|Male|Default Guarantor|SELF|||||Unknown||||Unknown|||||||||605846
+IN1|1|1607851^SELF PAY^^^SELF PAY|1455518|Self Pay|TBD^^^^^US^Business||(000)000-0000^Business^^^^^^0|||605846|Unknown|20210706000000|<maximum>||Self|ZZZTEST^EDUSACS^^^^^Current|SELF|19700319|48 none^^New Baltimore^MI^48047^US^Home^^Macomb~cd@none.com^^^^^^E-mail|Yes||1|||||||||||||Self Pay|||||||Unknown|Male
+IN2|||^Unknown||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||(999)988-8888^Home^Tel|(000)000-0000||||||||SELF
+AL1|1|Drug|d00321^nitroglycerin^Multum Drug|Severe
+AL1|2|Drug|d00321^Nitrostat^Multum Drug|Severe
+NTE|1||pt states experiences difficulty breathing with nitrostat (doesn't tolerate NGT ointment, PO spray either)
+AL1|3|Drug|402^contrast media (iodine-based)^Multum Allergy Categgit@github.com:daya/simple_hl7.gitory|Moderate|Itching
