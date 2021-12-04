@@ -74,6 +74,7 @@ module SimpleHL7
         msg.msh[6].to_s.should == "accountid"
         msg.pid[5].to_s.should == "User"
         msg.pid[5][2].to_s.should == "Test"
+        msg.has_segment?("al1").should be_falsey
       end
 
     end
