@@ -19,7 +19,7 @@ module SimpleHL7
       if meth.to_s =~ /^[a-zA-Z][a-zA-Z0-9]{2}$/
         get_named_segment(meth)
       elsif meth.to_s =~ /^[a-zA-Z][a-zA-Z0-9]{2}_all$/
-        seg_name = meth[0..3]
+        seg_name = meth[0...3]
         all_segments(seg_name)
       else
         super
@@ -83,10 +83,14 @@ module SimpleHL7
       segment
     end
 
+    def has_segment?(name)
+      @segments.any?{|segment| segment.name == name.upcase}
+    end
+
     private
 
     def all_segments(name)
-      @segments.select {|seg| seg.name == name}
+      @segments.select {|seg| seg.name == name.upcase}
     end
 
 

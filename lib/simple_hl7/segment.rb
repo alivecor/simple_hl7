@@ -27,5 +27,9 @@ module SimpleHL7
     def to_a
       super.insert(0, name)
     end
+
+    def empty?
+      @subcomposites.keys.size == 1
+    end
   end
 end
