@@ -83,6 +83,10 @@ module SimpleHL7
       segment
     end
 
+    def has_segment?(name)
+      @segments.any?{|segment| segment.name == name.upcase}
+    end
+
     private
 
     def all_segments(name)
